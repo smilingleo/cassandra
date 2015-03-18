@@ -1,6 +1,5 @@
 [datastax]
-name = DataStax Repo for Apache Cassandra
-baseurl = http://rpm.datastax.com/community
-enabled = 1
-gpgcheck = 0
-
+name = DataStax Repo for DataStax Enterprise
+baseurl=http://leo.trash.reg_gmail.com:9Ne9AYi3zOsXCke@rpm.datastax.com/enterprise
+enabled=1
+gpgcheck=0
