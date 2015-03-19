@@ -17,10 +17,8 @@ fi
 echo Configuring Cassandra to listen at $IP with seeds $SEEDS
 
 # Setup Cassandra
-DEFAULT=${DEFAULT:-/etc/cassandra/default.conf}
-CONFIG=/etc/cassandra/conf
+CONFIG=/etc/dse/cassandra
 
-rm -rf $CONFIG && cp -r $DEFAULT $CONFIG
 sed -i -e "s/^listen_address.*/listen_address: $IP/"            $CONFIG/cassandra.yaml
 sed -i -e "s/^rpc_address.*/rpc_address: 0.0.0.0/"              $CONFIG/cassandra.yaml
 sed -i -e "s/# broadcast_address.*/broadcast_address: $IP/"              $CONFIG/cassandra.yaml
