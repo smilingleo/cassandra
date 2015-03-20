@@ -27,6 +27,13 @@ sed -i -e "s/^commitlog_segment_size_in_mb.*/commitlog_segment_size_in_mb: 64/" 
 sed -i -e "s/- seeds: \"127.0.0.1\"/- seeds: \"$SEEDS\"/"       $CONFIG/cassandra.yaml
 sed -i -e "s/# JVM_OPTS=\"$JVM_OPTS -Djava.rmi.server.hostname=<public name>\"/ JVM_OPTS=\"$JVM_OPTS -Djava.rmi.server.hostname=$IP\"/" $CONFIG/cassandra-env.sh
 
+# Setup Spark
+SPARK_CONF=/etc/dse/spark
+
+sed -i -e "s/# export DEFAULT_PER_APP_CORES=\"1\"/export DEFAULT_PER_APP_CORES=\"1\"/"              $SPARK_CONF/spark-env.sh
+sed -i -e "s/# export SPARK_WORKER_MEMORY=2048m/export SPARK_WORKER_MEMORY=512m/"  		            $SPARK_CONF/spark-env.sh
+sed -i -e "s/# export SPARK_WORKER_CORES=4/export SPARK_WORKER_CORES=4/"				            $SPARK_CONF/spark-env.sh
+
 if [[ $SNITCH ]]; then
   sed -i -e "s/endpoint_snitch: SimpleSnitch/endpoint_snitch: $SNITCH/" $CONFIG/cassandra.yaml
 fi
